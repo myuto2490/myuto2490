@@ -1,9 +1,11 @@
-# 閲覧数カウンターの画像（counter/views.svg）を 30 分ごとに作り直す
+# 閲覧数カウンターの画像（views.svg）を 5 分ごとに作り直し、専用ブランチ counter に置く。
+# main には一切コミットしないので、コントリビューション（草）やコミット数は増えない。
+# counter ブランチは毎回 1 コミットだけにして上書きする（履歴は溜まらない）。
 name: Update profile view counter
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -26,14 +28,24 @@ jobs:
       - name: Update counter image
         run: python counter/update.py
 
-      - name: Commit if changed
+      - name: Publish to counter branch if changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
         run: |
-          if git diff --quiet -- counter/views.svg; then
+          if git fetch -q --depth=1 origin counter 2>/dev/null \
+             && git show origin/counter:views.svg > /tmp/old.svg 2>/dev/null \
+             && cmp -s /tmp/old.svg counter/views.svg; then
             echo "No change"
             exit 0
           fi
+          work="$(mktemp -d)"
+          cp counter/views.svg "$work/views.svg"
+          cd "$work"
+          git init -q -b counter
           git config user.name "myuto2490"
           git config user.email "192053786+myuto2490@users.noreply.github.com"
-          git add counter/views.svg
-          git commit -m "Update profile view counter"
-          git push
+          git add views.svg
+          git commit -q -m "Update profile view counter"
+          git push -q --force "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git" counter
+          echo "Published"

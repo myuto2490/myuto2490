@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <img src="counter/views.svg" alt="Profile views"><img src="https://komarev.com/ghpvc/?username=myuto2490" width="1" height="1" alt="">
+  <img src="https://raw.githubusercontent.com/myuto2490/myuto2490/counter/views.svg" alt="Profile views"><img src="https://komarev.com/ghpvc/?username=myuto2490" width="1" height="1" alt="">
 </p>
 
 <p align="center">━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
