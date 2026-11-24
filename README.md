@@ -20,10 +20,6 @@
   <img src="counter/views.svg" alt="Profile views"><img src="https://komarev.com/ghpvc/?username=myuto2490" width="1" height="1" alt="">
 </p>
 
-<p align="center">
-  <a href="https://github.com/myuto2490?tab=followers"><img src="https://img.shields.io/github/followers/myuto2490?label=Followers&style=flat-square&color=555555&labelColor=111111&logo=github" alt="Followers"></a>
-</p>
-
 <p align="center">━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
 
 ## GitHub Stats
