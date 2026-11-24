@@ -1,0 +1,39 @@
+# 閲覧数カウンターの画像（counter/views.svg）を 30 分ごとに作り直す
+name: Update profile view counter
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-counter
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Update counter image
+        run: python counter/update.py
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- counter/views.svg; then
+            echo "No change"
+            exit 0
+          fi
+          git config user.name "myuto2490"
+          git config user.email "192053786+myuto2490@users.noreply.github.com"
+          git add counter/views.svg
+          git commit -m "Update profile view counter"
+          git push
