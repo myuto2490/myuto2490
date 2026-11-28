@@ -42,13 +42,6 @@
   </picture>
 </p>
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=myuto2490&hide_border=true&area=true&bg_color=0d1117&color=c9d1d9&line=ffffff&point=ffffff&area_color=6e7681">
-    <img src="https://github-readme-activity-graph.vercel.app/graph?username=myuto2490&hide_border=true&area=true&bg_color=ffffff&color=333333&line=111111&point=111111&area_color=d0d7de" alt="Contribution graph" width="100%">
-  </picture>
-</p>
-
 ## 注目のプロジェクト
 
 <p align="center">
